@@ -1,0 +1,66 @@
+<h3>Create Employee</h3>
+<div [hidden]="submitted" style="width: 400px;">
+  <form (ngSubmit)="onSubmit()" [formGroup]="form">
+    <div class="form-group">
+      <label for="firstName">First Name</label>
+      <input formControlName="firstName" type="text" class="form-control" id="firstName"  name="firstName" [(ngModel)]="employee.firstName">
+      <div *ngIf="f['firstName'].touched && f['firstName'].invalid" class="alert alert-danger">
+        <div *ngIf="f['firstName'].errors && f['firstName'].errors['required']">First Name is required.</div>
+    </div>
+  </div>
+    <div class="form-group">
+      <label for="lastName">Last Name</label>
+      <input formControlName="lastName" type="text" class="form-control" id="lastName" [(ngModel)]="employee.lastName" name="lastName">
+      <div *ngIf="f['lastName'].touched && f['lastName'].invalid" class="alert alert-danger">
+        <div *ngIf="f['lastName'].errors && f['lastName'].errors['required']">last Name is required.</div>
+    </div>
+    </div>
+
+    <div class="form-group">
+      <label for="name">Email</label>
+      <input formControlName="email" type="text" class="form-control" id="email" required [(ngModel)]="employee.email" name="email">
+      <div *ngIf="f['email'].touched && f['email'].invalid" class="alert alert-danger">
+        <div *ngIf="f['email'].errors && f['email'].errors['required']">Email is required.</div>
+    </div>
+    </div>
+
+    <div class="form-group">
+      <label for="name">Phone Number</label>
+      <input formControlName="phone_number" type="text" class="form-control" id="phone_number" required [(ngModel)]="employee.phone_number" name="phone_number">
+      <div *ngIf="f['phone_number'].touched && f['phone_number'].invalid" class="alert alert-danger">
+        <div *ngIf="f['phone_number'].errors && f['phone_number'].errors['required']">phone number is required.</div>
+    </div>
+    </div>
+
+    <div class="form-group">
+      <label for="name">Salary</label>
+      <input formControlName="salary" type="text" class="form-control" id="salary" required [(ngModel)]="employee.salary" name="salary">
+      <div *ngIf="f['salary'].touched && f['salary'].invalid" class="alert alert-danger">
+        <div *ngIf="f['salary'].errors && f['salary'].errors['required']">salary is required.</div>
+    </div>
+    </div>
+
+    <div class="form-group">
+      <label for="departmentName">Deparment</label>
+      <input formControlName="departmentName" type="text" class="form-control" id="salary" required [(ngModel)]="employee.departmentName" name="departmentName">
+      <div *ngIf="f['departmentName'].touched && f['departmentName'].invalid" class="alert alert-danger">
+        <div *ngIf="f['departmentName'].errors && f['departmentName'].errors['required']">departmentName is required.</div>
+    </div>
+    </div>
+
+    <div class="form-group">
+      <label for="date">Hire Date</label>
+      <input formControlName="date" type="date" class="form-control" id="date" required [(ngModel)]="employee.hire_date" name="hire_date">
+      <div *ngIf="f['date'].touched && f['date'].invalid" class="alert alert-danger">
+        <div *ngIf="f['date'].errors && f['date'].errors['required']">Hire date is required.</div>
+    </div>
+    </div>
+
+    <button type="submit" class="btn btn-success"  [disabled]="form.invalid" type="submit">Submit</button>
+  </form>
+</div>
+
+<div *ngIf="submitted">
+  <h4>You submitted successfully!</h4>
+  <!-- <button class="btn btn-success" (click)="newEmployee()">Add</button> -->
+</div>
