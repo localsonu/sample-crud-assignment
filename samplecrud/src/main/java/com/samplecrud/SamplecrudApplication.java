@@ -16,6 +16,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.Arrays;
+import java.util.Date;
 
 
 @SpringBootApplication
@@ -34,11 +35,11 @@ public class SamplecrudApplication {
 	@EventListener
 	public void createDemoData(ApplicationReadyEvent event) {
 		Employee dummyData = new Employee(1 ,"muhammad","haseeb","raza@gmai.com",
-				"sjfs","no date",140,1,null);
+				0324,new Date(),140,1,null);
 		Employee dummyData1 = new Employee(2 ,"muhammad","haseeb","raza@gmai.com",
-				"sjfs","no date",140,1,null);
+				0325,new Date(),140,1,null);
 		Employee dummyData2 = new Employee(3 ,"muhammad","haseeb","raza@gmai.com",
-				"sjfs","no date",140,1,null);
+				0321,new Date(),140,1,null);
 		employeeRepository.saveAll(Arrays.asList(dummyData,dummyData1,dummyData2));
 	}
 }

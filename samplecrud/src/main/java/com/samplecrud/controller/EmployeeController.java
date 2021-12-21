@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 //import javax.validation.Valid;
 
 
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,7 +49,7 @@ public class EmployeeController {
 
     @ApiOperation(value = "Add new Employee")
     @PostMapping("/employees")
-    public Employee createEmployee(@RequestBody Employee employee) throws ResourceNotFoundException {
+    public Employee createEmployee(@Valid @RequestBody Employee employee) throws ResourceNotFoundException {
         return employeeService.save(employee);
     }
 

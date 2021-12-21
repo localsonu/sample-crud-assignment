@@ -1,8 +1,13 @@
 package com.samplecrud.model;
 
 import lombok.Data;
+import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+import java.util.Date;
 
 @Entity
 @Table (name = "employee")
@@ -15,21 +20,29 @@ public class Employee {
     private Integer employeeID;
 
     @Column(name = "first_name")
+    @NotNull
+    @Size(min=2,message = "first name should have 2 character")
     private String firstName;
 
     @Column(name = "last_name")
+    @NotNull
+    @Size(min=2,message = "last name should have 2 character")
     private String lastName;
 
     @Column(name = "email")
+    @NotNull
     private String email;
 
     @Column(name = "phone_number")
-    private String phone_number;
+    @NotNull
+    @Pattern(regexp = "(^$|[0-9]{11})")
+    private Integer phone_number;
 
     @Column(name = "hire_date")
-    private String hire_date;
+    private Date hire_date;
 
     @Column(name = "salary")
+    @Range(min = 1,max = 1000000)
     private Integer salary;
 
     @Column(name = "manager_id")
@@ -42,7 +55,7 @@ public class Employee {
     @JoinColumn(name = "department_id")
     private Department department;
 
-    public Employee(int employeeID, String firstName, String lastName, String email, String phone_number, String hire_date, Integer salary, Integer manager_id, Department department) {
+    public Employee(int employeeID, String firstName, String lastName, String email, Integer phone_number, Date hire_date, Integer salary, Integer manager_id, Department department) {
         this.employeeID = employeeID;
         this.firstName = firstName;
         this.lastName = lastName;
