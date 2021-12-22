@@ -35,7 +35,6 @@ public class Employee {
 
     @Column(name = "phone_number")
     @NotNull
-    @Pattern(regexp = "(^$|[0-9]{11})")
     private Integer phone_number;
 
     @Column(name = "hire_date")

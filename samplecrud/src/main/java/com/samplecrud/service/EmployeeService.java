@@ -31,4 +31,25 @@ public class EmployeeService {
 
         return employeeRepository.save(employee);
     }
+    public Employee update(Employee employee, Integer id) throws ResourceNotFoundException {
+        if (employee.getEmployeeID() != null) {
+            throw new EntityExistsException("There is already existing entity with such ID in the database.");
+        }
+        Employee empDb=  employeeRepository.findById(id).orElse(null);
+        if(empDb== null){
+            throw new ResourceNotFoundException("Employee not found for this id :: " + employee.getDepartmentName());
+        }
+        empDb.setEmail(employee.getEmail());
+        Department department1=  departmentRepository.findByDepartment_Name(employee.getDepartmentName());
+        if(department1== null){
+            empDb.setDepartment(null);
+        }
+        empDb.setDepartment(department1);
+        empDb.setFirstName(employee.getFirstName());
+        empDb.setLastName(employee.getLastName());
+        empDb.setHire_date(employee.getHire_date());
+        empDb.setSalary(employee.getSalary());
+        empDb.setPhone_number(employee.getPhone_number());
+        return employeeRepository.save(empDb);
+    }
 }

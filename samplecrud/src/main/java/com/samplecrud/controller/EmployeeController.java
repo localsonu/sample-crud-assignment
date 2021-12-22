@@ -1,6 +1,7 @@
 package com.samplecrud.controller;
 
 import com.samplecrud.exception.ResourceNotFoundException;
+import com.samplecrud.model.Department;
 import com.samplecrud.model.Employee;
 import com.samplecrud.respository.EmployeeRepository;
 import com.samplecrud.service.EmployeeService;
@@ -9,11 +10,13 @@ import io.swagger.annotations.ApiOperation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 //import javax.validation.Valid;
 
 
+import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
@@ -65,5 +68,18 @@ public class EmployeeController {
         Map<String, Boolean> response = new HashMap<>();
         response.put("deleted", Boolean.TRUE);
         return response;
+    }
+    @ApiOperation(value = "update employee")
+    @PutMapping("/employee/{id}")
+    public ResponseEntity<Employee> updateDepartment( @PathVariable(value = "id") Integer id, @RequestBody Employee employee) {
+        if (employee.getEmployeeID() == null) {
+            return new ResponseEntity<Employee>(HttpStatus.BAD_REQUEST);
+        }
+        try {
+            Employee result = employeeService.update(employee, id);
+            return ResponseEntity.ok().body(result);
+        } catch (EntityNotFoundException | ResourceNotFoundException e) {
+            return new ResponseEntity<Employee>(HttpStatus.NOT_FOUND);
+        }
     }
 }
