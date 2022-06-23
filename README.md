@@ -7,7 +7,7 @@ Sample Crud Application swagger can access with below URL                       
     import project in IDE go to "employee_management\samplecrud\src\main\java\com\samplecrud\SamplecrudApplication.java"
     just right click and click on "Run SamplecrudApplication". for refrence check (How to run.png) in static folder.
     
-                HOW TO RUN ANGULAR FRONTKEND
+                HOW TO RUN ANGULAR FRONTEND
     import project in IDE go to \employee_management\samplecrud-frontend\src            
     COMMAND TO RUN : ng serve 
      for refrence check (How to run ui.png) in static folder.
